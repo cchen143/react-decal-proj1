@@ -2,32 +2,23 @@ import React from "react";
 
 const Product = props => {
   // ----- DON'T MODIFY BELOW -----
-  var count = 1;
-
-  function click(product) {
-    count += 1;
-    return (
-      <div
-        class="ui bottom attached button"
-        onClick={() => {
-          click(product);
-        }}
-      >
-        <i class="add icon" />
-        Add to Cart
-      </div>
-    );
-  }
+  var products = {};
 
   function addToCart(product) {
     var name = product.name;
-    if (count > 1) name = name + "s";
-    if (count > product.stock) {
-      alert("There are too many " + name + "s in your cart!");
+    if (product.stock == 0) {
+      alert("This item is out of stock!");
+    } else if (products[name] == undefined) {
+      products[name] = 1;
+      alert("There are " + products[name] + " " + name + " in your cart!");
     } else {
-      alert("There are " + count + " " + name + " in your cart!");
+      if (products[name] + 1 > product.stock) {
+        alert("There are too many " + name + "s in your cart!");
+      } else {
+        products[name] = products[name] + 1;
+        alert("There are " + products[name] + " " + name + "s in your cart!");
+      }
     }
-    count = 1;
   }
 
   return (
@@ -41,7 +32,6 @@ const Product = props => {
           <div
             class="ui bottom attached button"
             onClick={() => {
-              click();
               addToCart(product);
             }}
           >
