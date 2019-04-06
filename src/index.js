@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./styles/styles.css";
 import Cart from "./Cart";
+import Receipt from "./Receipt";
 
 // Add the Cart component to the `#root` element below!
 // YOUR CODE HERE
